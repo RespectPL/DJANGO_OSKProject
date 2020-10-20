@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block header %}
+    <!-- Masthead Heading -->
+    <h1 class="masthead-heading text-uppercase mb-0">OSK - SYSTEM OBSŁUGI</h1>
+    <!-- Masthead Subheading -->
+    <br />
+    <a href="{% url 'index' %}" class="btn btn-dark btn-lg my-2 my-sm-0">Powrót do Strony Głównej</a>
+{% endblock %}
+{% block content %}
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">USTAL JAZDĘ KURSANTOWI!</h2>
+
+    <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+    </div>
+
+     <form class="form-group my-2 my-lg-0 ml-auto" method="post">
+        {% csrf_token %}
+         <!-- {{ form }} -->
+        Kursant:
+        <select name="kursant" class="form-control mr-sm-2">
+            <option>
+                {% for k in form.kursant %}
+                    {{ k }}
+                {% endfor %}
+            </option>
+        </select>
+        Pojazd:
+        <select name="pojazd" class="form-control mr-sm-2">
+            <option>
+                {% for p in form.pojazd %}
+                    {{ p }}
+                {% endfor %}
+            </option>
+        </select>
+         Kurs:
+        <select name="kurs" class="form-control mr-sm-2">
+            <option>
+                {% for ku in form.kurs %}
+                    {{ ku }}
+                {% endfor %}
+            </option>
+        </select>
+        Data:
+         <input type="date" class="form-control mr-sm-2" name="data">
+         Godzina:
+         <input type="time" class="form-control mr-sm-2" name="godzina">
+         Ilość godzin:
+        <input type="text" class="form-control mr-sm-2" name="iloscGodzin">
+        <br />
+        <center><button type="submit" class="btn btn-primary btn-lg my-2 my-sm-0">Ustal</button></center>
+    </form>
+{% endblock %}

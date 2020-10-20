@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block header %}
+    <!-- Masthead Heading -->
+    <h1 class="masthead-heading text-uppercase mb-0">OSK - SYSTEM OBSŁUGI</h1>
+    <!-- Masthead Subheading -->
+    <br />
+    <p class="masthead-subheading font-weight-light mb-0">Witaj w Systemie Obsługi Ośrodka Szkolenia Kierowców!</p>
+{% endblock %}
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <h2>Wybierz czynność:</h2>
+        {% if not request.user.is_superuser %}
+            {% if not request.user.is_staff %}
+                <a href="{% url 'completeDataParticipant' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Uzupełnij swoje dane</a>
+                <a href="{% url 'joinCourse' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Zapisz się na kurs</a>
+                <a href="{% url 'checkCourse' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Sprawdź swoje kursy</a>
+                <a href="{% url 'checkLectures' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Wykłady</a>
+                <a href="{% url 'checkDrivingLessons' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Jazdy</a>
+                <a href="{% url 'checkInternalExam' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Egzaminy wewnętrzne</a>
+                <br/><br />
+                <a href="{% url 'requestChangeDateDrivingLessons' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Prośba o zmianę terminu jazdy</a>
+            {% else %}
+                <a href="{% url 'checkParticipantCourse' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Sprawdź dane o kursach</a>
+                <a href="{% url 'determineLecture' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Ustal wykład kursantowi</a>
+                <a href="{% url 'determineDrivingLesson' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Ustal jazdę kursantowi</a>
+                <a href="{% url 'determineInternalExam' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Ustal egzamin wewnętrzny</a>
+                <br/><br />
+                <a href="{% url 'checkLecturesSelf' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Prowadzone wykłady</a>
+                <a href="{% url 'checkDrivingLessonSelf' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Prowadzone jazdy</a>
+                <a href="{% url 'checkRequestChangeDateDrivingLesson' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Prośby o zmianę terminu jazdy</a>
+                <a href="{% url 'changeDateDrivingLesson' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Zmień termin jazdy</a>
+                <a href="{% url 'completeCourse' %}" class="btn btn-primary btn-lg my-2 my-sm-0">Zakończ kurs</a>
+            {% endif %}
+        {% else %}
+            <a href="../admin/" class="btn btn-primary btn-lg my-2 my-sm-0">Wejdź do Panelu Admina</a>
+        {% endif %}
+    {% endif %}
+    <!-- <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">COŚ TAM</h2>
+
+    <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+    </div> -->
+{% endblock %}

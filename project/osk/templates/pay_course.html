@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block header %}
+    <!-- Masthead Heading -->
+    <h1 class="masthead-heading text-uppercase mb-0">OSK - SYSTEM OBSŁUGI</h1>
+    <!-- Masthead Subheading -->
+    <br />
+    <a href="{% url 'index' %}" class="btn btn-dark btn-lg my-2 my-sm-0">Powrót do Strony Głównej</a>
+{% endblock %}
+{% block content %}
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">OPŁACANIE KURSÓW</h2>
+
+    <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+    </div>
+
+     <form class="form-group my-2 my-lg-0 ml-auto" method="post">
+        {% csrf_token %}
+        Kurs:
+        <select name="kurs" class="form-control mr-sm-2">
+            {% for c in courses %}
+            <option>
+                {{ c.kurs }}
+            </option>
+            {% endfor %}
+        </select>
+        <br />
+        <center><button type="submit" class="btn btn-primary btn-lg my-2 my-sm-0">Zapłać za wybrany kurs</button></center>
+    </form>
+{% endblock %}

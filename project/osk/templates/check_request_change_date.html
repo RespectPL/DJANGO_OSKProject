@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block header %}
+    <!-- Masthead Heading -->
+    <h1 class="masthead-heading text-uppercase mb-0">OSK - SYSTEM OBSŁUGI</h1>
+    <!-- Masthead Subheading -->
+    <br />
+    <a href="{% url 'index' %}" class="btn btn-dark btn-lg my-2 my-sm-0">Powrót do Strony Głównej</a>
+{% endblock %}
+{% block content %}
+
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">PROŚBY O ZMIANĘ TERMINU JAZD</h2>
+
+    <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+    </div>
+
+    <table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col"><center>#</center></th>
+            <th scope="col"><center>Kursant</center></th>
+            <th scope="col"><center>Prośba</center></th>
+            <th scope="col"><center>Data wysłania</center></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for r in req %}
+        <tr>
+            <th scope="row"><center>{{ forloop.counter }}</center></th>
+            <th><center>{{ r.kursant }}</center></th>
+            <th><center>{{ r.prosba }}</center></th>
+            <th><center>{{ r.data }}</center></th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

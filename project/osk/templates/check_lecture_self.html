@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block header %}
+    <!-- Masthead Heading -->
+    <h1 class="masthead-heading text-uppercase mb-0">OSK - SYSTEM OBSŁUGI</h1>
+    <!-- Masthead Subheading -->
+    <br />
+    <a href="{% url 'index' %}" class="btn btn-dark btn-lg my-2 my-sm-0">Powrót do Strony Głównej</a>
+{% endblock %}
+{% block content %}
+
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">INFORMACJE O WYKŁADACH</h2>
+
+    <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+    </div>
+
+    <table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col"><center>#</center></th>
+            <th scope="col"><center>Prowadzący</center></th>
+            <th scope="col"><center>Temat</center></th>
+            <th scope="col"><center>Data</center></th>
+            <th scope="col"><center>Godzina</center></th>
+            <th scope="col"><center>Ilość godzin</center></th>
+            <th scope="col"><center>Stan</center></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for l in lectures %}
+        <tr>
+            <th scope="row"><center>{{ forloop.counter }}</center></th>
+            <th><center>{{ l.us }}</center></th>
+            <th><center>{{ l.temat }}</center></th>
+            <th><center>{{ l.data }}</center></th>
+            <th><center>{{ l.godzina }}</center></th>
+            <th><center>{{ l.iloscGodzin }}</center></th>
+            <th><center>{% if l.n %}<font color="lime">NADCHODZĄCY</font>{% else %}ODBYTY{% endif %}</center></th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

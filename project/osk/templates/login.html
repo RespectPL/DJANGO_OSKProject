@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block header %}
+    <!-- Masthead Heading -->
+    <h1 class="masthead-heading text-uppercase mb-0">OSK - SYSTEM OBSŁUGI</h1>
+    <!-- Masthead Subheading -->
+    <br />
+    <p class="masthead-subheading font-weight-light mb-0">Witaj w Systemie Obsługi Ośrodka Szkolenia Kierowców!</p>
+{% endblock %}
+{% block content %}
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">ZALOGUJ SIĘ DO SYSTEMU!</h2>
+
+    <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+    </div>
+
+    <form class="form-group my-2 my-lg-0 ml-auto" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <br />
+        <center><button type="submit" class="btn btn-primary btn-lg my-2 my-sm-0">Zaloguj</button></center>
+    </form>
+{% endblock %}

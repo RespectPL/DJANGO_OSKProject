@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block header %}
+    <!-- Masthead Heading -->
+    <h1 class="masthead-heading text-uppercase mb-0">OSK - SYSTEM OBSŁUGI</h1>
+    <!-- Masthead Subheading -->
+    <br />
+    <a href="{% url 'index' %}" class="btn btn-dark btn-lg my-2 my-sm-0">Powrót do Strony Głównej</a>
+{% endblock %}
+{% block content %}
+
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">INFORMACJE O KURSACH</h2>
+
+    <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+    </div>
+
+    <table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col"><center>#</center></th>
+            <th scope="col"><center>Kursant</center></th>
+            <th scope="col"><center>Kurs</center></th>
+            <th scope="col"><center>Stan płatności</center></th>
+            <th scope="col"><center>Stan kursu</center></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in datas %}
+        <tr>
+            <th scope="row"><center>{{ forloop.counter }}</center></th>
+            <th><center>{{ d.0 }} {{ d.1 }} ({{ d.2 }})</center></th>
+            <th><center>{{ d.3 }}</center></th>
+            <th><center>{% if not d.4 %}<font color="red">Niezapłacone</font>{% else %}<font color="lime">Zapłacone</font>{% endif %}</center></th>
+            <th><center>{% if not d.5 %}<font color="lime">W trakcie</font>{% else %}<font color="red">Zakończony</font>{% endif %}</center></th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% if check %}
+    <a href="{% url 'payCourse' %}" class="btn btn-info btn-lg my-2 my-sm-0">Zapłać za kursy</a>
+    {% endif %}
+{% endblock %}
